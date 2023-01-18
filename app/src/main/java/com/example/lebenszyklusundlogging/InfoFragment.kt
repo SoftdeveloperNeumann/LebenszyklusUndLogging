@@ -82,5 +82,16 @@ class InfoFragment: Fragment() {
         Log.d(TAG, "onDetach: Fragment wird von der Activity getrennt")
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("counter", binding.tvFragmentOutput.text.toString().toInt())
+        outState.putInt("counter2", (activity as MainActivity).counter)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        binding.tvFragmentOutput.text = if(savedInstanceState != null) savedInstanceState.getInt("counter2",-1).toString() else "0"
+    }
 
 }

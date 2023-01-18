@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         binding.btnCount.setOnClickListener {
             counter++
             binding.tvOutput.text = counter.toString()
+            // counter an Fragment übergeben
+            (supportFragmentManager.fragments[0] as InfoFragment).binding.tvFragmentOutput.text = counter.toString()
         }
 
 //        try {
